@@ -46,7 +46,7 @@ http("Demo")
 ...
 {% endhighlight %}
 
-You can more about validators on the website of [Gatling][gatling].
+You can read more about validators on the website of [Gatling][gatling].
 
 #### Conclusion
 In this article I've briefly discussed how we use [Gatling][gatling] at [Portavita][portavita]. We're pretty happy with our decision to use Gatling for load testing. It's straightforward to use and provides us with details about the performance of the services we develop.
