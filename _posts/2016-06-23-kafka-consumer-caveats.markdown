@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Caveats for working with Kafka consumers"
+title:  "Caveats for Working with Kafka Consumers"
 date:   2016-06-23 12:14:07 +0200
 categories: kafka scala
 author: Jasper A. Visser
