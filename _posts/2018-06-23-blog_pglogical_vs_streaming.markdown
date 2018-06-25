@@ -26,7 +26,7 @@ More recently, a new replication mechanism has been made possible thanks to the 
 
 I learned the usage of it some 1 year and half ago in London during a 'Replication Backup and Disaster Recovery' course, but only recently I had the possibility to play with it.
 
-What pglogical does differently from Streaming Replication is actually the way it replicates. Master (in pglogical jargon called 'Subscriber') sends a logical stream of data to Standby ('Subscriber').
+What pglogical does differently from Streaming Replication is actually the way it replicates. Master (in pglogical jargon called 'Provider') sends a logical stream of data to Standby ('Subscriber').
 
 Now, let's focus on the word 'logical'. English dictionary defines logical as 'reasonable and based on good judgement', which in a way might fit our pglogical.
 
