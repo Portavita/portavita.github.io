@@ -24,7 +24,7 @@ PostgreSQL Streaming Replication is made possible by streaming to the standby se
 This very powerful feature is available on PostgreSQL since version 9.0 and zillions of words have been already spent in the cyberspace on this topic.
 More recently, a new replication mechanism has been made possible thanks to the efforts of [2ndQuadrant][2ndQuadrant]. 
 
-I learned the usage of it some 1 year and half ago in London during a 'Replication Backup and Disaster Recovery' course, but uonly recently I had the possibility to play with it.
+I learned the usage of it some 1 year and half ago in London during a 'Replication Backup and Disaster Recovery' course, but only recently I had the possibility to play with it.
 
 What pglogical does differently from Streaming Replication is actually the way it replicates. Master (in pglogical jargon called 'Subscriber') sends a logical stream of data to Standby ('Subscriber').
 
@@ -36,7 +36,7 @@ Basically what pglogical is able to, is to stream only the requested changes, in
 
 This opens up the way to new scenarios where only one database or part of it (a schema, a table or even a column) can be replicated to another node. 
 
-Advantages of using pglogical are multiple, but i do not want to focus on the comparison, since you can read it already elsewhere on internet. If you are interested in knowing more, a good starting point is indeed its official [documentation][pglogical_docs]
+Advantages of using pglogical are multiple, but I do not want to focus on the comparison, since you can read it already elsewhere on internet. If you are interested in knowing more, a good starting point is indeed its official [documentation][pglogical_docs]
 
 ### Benchmarking
 
@@ -98,15 +98,15 @@ psql $pglog_db  -c "SELECT pglogical.create_subscription(subscription_name := 's
 
 ##### The Tests
 
-To push data to the database, i used pgbench tool and some homebrew command line scripts, to fit different purposes.
+To push data to the database, I used pgbench tool and some homebrew command line scripts, to fit different purposes.
 
-All the tests ran multiple times in order to verify the accuracy of the numbers. Given the simplicity of the test, i received identical outputs for every run, which is always a good thing.
+All the tests ran multiple times in order to verify the accuracy of the numbers. Given the simplicity of the test, I received identical outputs for every run, which is always a good thing.
 
-Before each run i reset the network statistics on the interface, and after i note down the results.
+Before each run network interface statistics are cleared, and after the run results are noted down.
 
 ##### Run test, run!
 
-Here i report the set of 3 tests i ran, and their results related to the network interface that connectes them to the standby/subscriber
+Here I'm reporting the set of 3 tests I ran, and their results related to the network interface that connects them to the standby/subscriber
 
 ###### pgbench test
 
@@ -115,7 +115,7 @@ I ran pgbench in the following way:
 
 pgbench -c 3 -P 10  -r -T 200 -R 1000 
 
-Which tells pgbench to push 1000 Tuples per Second, therefore i can derive the bandwidth usage based on a stable baseline of pushed data.
+Which tells pgbench to push 1000 Tuples per Second, therefore is possible to derive the bandwidth usage based on a stable baseline of pushed data.
 
 
 Streaming Replication:
@@ -134,7 +134,7 @@ Note that 'By default, pgbench tests a scenario that is loosely based on TPC-B, 
 
 I think that it might be a kind of real world scenario.
 
-To get more in depth and have more grip over the actions performed i therefore created another couple of tests.
+To get more in depth and have more grip over the actions performed I therefore created another couple of tests.
 
 
 
@@ -179,9 +179,9 @@ Logical Replication:
           RX bytes:18022889 (17.1 MiB)  TX bytes:44468348 (42.4 MiB)
 
 
-Note that i pushed 10K recors and not 50M because inserting one by one costs a lot of time. A lot. 
+Note that I pushed 10K records and not 50M because inserting one by one costs a lot of time. A lot. 
 
-Here below i will report a comparison, with normalized numbers (to allow an easy and fair comparison)
+Here below I will report a comparison, with normalized numbers in order to allow an easy and fair comparison.
 
 ##### Summary
 
@@ -203,7 +203,7 @@ The same is not true when using logical replication because every node is in cha
 
 The downside is that the Subscriber will have resources busy in performing its own VACUUM operations. Something definitely to keep in mind.
 
-I think that pglogical is a great invention, a bit more complicate to setup and maintain but depends on your scenario it can solve problems that are unsolvable susing streaming replication.
+I think that pglogical is a great invention, a bit more complicate to setup and maintain but depends on your scenario it can solve problems that are unsolvable using streaming replication.
 Also the project can probably mature in the future and bring us more features and functions for easier maintenance.
 
 Streaming replication on the other end is dead easy to configure, mature and very robust as solution.
