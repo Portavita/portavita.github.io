@@ -99,7 +99,6 @@ psql $pglog_db  -c "SELECT pglogical.create_subscription(subscription_name := 's
 ![Earth at night](https://raw.githubusercontent.com/Portavita/portavita.github.io/master/img/EarthAtNight_SuomiNPP_3600.jpg/EarthAtNight_SuomiNPP_3600.jpg)
 How many databases down there?                                    (Photo courtesy of Nasa.gov)
 
-https://raw.githubusercontent.com/Portavita/portavita.github.io/master/img/EarthAtNight_SuomiNPP_3600.jpg/EarthAtNight_SuomiNPP_3600.jpg
 
 ##### The Tests
 
