@@ -96,6 +96,11 @@ psql $pglog_db -c "SELECT pglogical.create_node(node_name := 'subscriber.$pglog_
 psql $pglog_db  -c "SELECT pglogical.create_subscription(subscription_name := 'subscription_to_myprovider_$pglog_db',  synchronize_structure := true, provider_dsn := 'host=myprovider port=5432 dbname=$pglog_db');"
 ```
 
+![Earth at night](https://raw.githubusercontent.com/Portavita/portavita.github.io/master/img/EarthAtNight_SuomiNPP_3600.jpg/EarthAtNight_SuomiNPP_3600.jpg)
+How many databases down there?                                    (Photo courtesy of Nasa.gov)
+
+https://raw.githubusercontent.com/Portavita/portavita.github.io/master/img/EarthAtNight_SuomiNPP_3600.jpg/EarthAtNight_SuomiNPP_3600.jpg
+
 ##### The Tests
 
 To push data to the database, I used pgbench tool and some homebrew command line scripts, to fit different purposes.
