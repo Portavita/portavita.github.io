@@ -1,12 +1,11 @@
-
-
 ---
 layout: post
 title:  "A Timeseries Case Study: InfluxDB VS PostgreSQL to store data"
-date:   2018-07-30 17:34:56 +0200
+date:   2018-07-31 17:34:56 +0200
 categories: Postgres
 author: Fabio Pardi
 ---
+
 
 ![InfluxDB](https://raw.githubusercontent.com/Portavita/portavita.github.io/master/img/Influx_vs_postgres.png)
 
