@@ -17,9 +17,9 @@ Grafana is a nice tool to graph data. It produces cool graphs and is relatively 
 Grafana has been historically used together with InfluxDB as data source, since InfluxDB is a NOSQL db made for time series, and very much plug and play.
 
 
-Every time I'm confronted with graphed data, one of the first questions that pop up in my mind are **'How was that thing doing last week?'** **'Is it today doing better or worst than 3 months ago?'**. When it came to answer my questions using InfluxDB I was then disappointed by the time it took to load the data.
+Every time I'm confronted with graphed data, one of the first questions that pop up in my mind are **'How was that thing doing last week?'** **'Is it today doing better or worse than 3 months ago?'**. When it came the time to answer my questions using InfluxDB I was then disappointed by how long it took to load the data.
 
-I decided anyway to give a try to Grafana and at the time of configuring it, (version 4.6), i noticed that PostgreSQL is now supported as data source.
+I decided anyway to give a try to Grafana and at the time of configuring it (version 4.6), I noticed that PostgreSQL was also supported as data source.
 
 As you might be aware of, here at [Portavita][portavita] we are big fan of PostgreSQL and we are successfully using it since years to serve our customers and for quite a number of internal services too.
 
@@ -136,7 +136,7 @@ Indexes:
 ```
 
 
-Following the best practice I created 2 users one for reading purposes (grafana_reader) and one with also write permissions (grafana_writer)
+Following the best practice I created 2 users one for reading purposes (grafana_reader) and one with also write permissions (grafana_writer).
 
 
 InfluxDB configuration was more straight forward, since there is no data structure to define. A simple:
@@ -304,7 +304,7 @@ Cold cache is when the data needs to be read from disk.
 
 A few considerations... since Grafana usually shows most recent data, is reasonable to think that the data we are querying/showing will be present in RAM already.
 
-That is true because i very common practice I noticed is to use the 'auto refresh' option that Grafana dashboard offers.
+That is true because a very common practice I noticed is to use the 'auto refresh' option that Grafana dashboard offers.
 
 That goes together with a monitor screen always open on recent data, like today's, or last hour's.
 
@@ -334,7 +334,7 @@ sync ; /etc/init.d/influxdb stop ; /etc/init.d/postgresql-9.6 stop ; echo 3 > /p
 
 Basically I'm asking the OS to forget everything about the disk portions it cached, and to do the same to PostgreSQL.
 
-Also note that a sequential scan will be performed, since we are retrieving the whole the table. This is the confirmation from the query plan:
+Also note that a sequential scan will be performed, since we are retrieving the whole table. This is the confirmation from the query plan:
 
 
 ```
@@ -558,11 +558,11 @@ On HDD things slow down, and probably InfluxDB will suffer more from that, since
 
 Also the cardinality of timeseries collected probably plays a big role here, therefore would be interesting to see how things go in those cases. Not to mention the famous and a bit still obscure to me compaction of data.
 
-Now some InfluxDB fanatics might say: you can cluster InfluxDB! it can scale!
+Now some InfluxDB fanatics might say: you can cluster InfluxDB! It can scale!
 
 Nope. That's a common misconception... You can scale only if you use a commercial version which is closed source. To me the open and the closed versions are 2 different kind of animals.
 
-Not-a-big-fun-of-closed-source. Period.
+Not-a-big-fan-of-closed-source. Period.
 
 On the other hand, PostgreSQL table partitioning in our specific case comes at huge help, and old data might be archived or streamed on a secondary PostgreSQL DWH machine.
 
