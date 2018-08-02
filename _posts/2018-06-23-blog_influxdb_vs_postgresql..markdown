@@ -23,9 +23,9 @@ I decided anyway to give a try to Grafana and at the time of configuring it (ver
 
 As you might be aware of, here at [Portavita][portavita] we are big fan of PostgreSQL and we are successfully using it since years to serve our customers and for quite a number of internal services too.
 
-Where there is data, there is a big chance that there is PostgreSQL too. Is like a good friend: it is always there when you need him and he never disappoints you.
+Where there is data, there is a big chance that there is PostgreSQL too. It's like a good friend: it is always there when you need him and he never disappoints you.
 
-I thought it might turn out handy to know if we can use PostgreSQL to store the company time series related data too, given also the fact that when it comes to tools and technologies I'm on the 'converging' side. The less technologies used in the company, the better.
+I thought it might turn out handy to know if we can use PostgreSQL to store the company time series related data too, given the fact that when it comes to tools and technologies I'm on the 'converging' side. The less technologies used in the company, the better.
 
 People can become experts and expertise results in better maintenance, and better usage of resources.
 
@@ -33,7 +33,7 @@ People can become experts and expertise results in better maintenance, and bette
 The aim of this page is to document some tests made while comparing InfluxDB to PostgreSQL under some data reading scenario.
 
 
-This is not a comprehensive guide to setup Grafana or InfluxDB or PostgreSQL, instead is only a comparison on what performs better in our use case.
+This is not a comprehensive guide to setup Grafana or InfluxDB or PostgreSQL, instead it is only a comparison on what performs better in our use case.
 
 
 Before starting, I have to admit that while I have quite some experience in using and tuning PostgreSQL under high traffic situations, at the beginning of my tests I had no experience on InfluxDB.
@@ -66,7 +66,7 @@ And here some questions raised on my mind...
 
 - An hardware cookbook should be a source of truth. If you want to get the best out of it, then follow the cookbook. What if I do not use a separate disk for WAL and then my load increases?
 
-Shall i proceed with a new (production!) installation?
+Shall I proceed with a new (production!) installation?
 
 - Where the good old best practice of ***'keep all your environments as equal as possible'*** is gone?
 
@@ -564,12 +564,12 @@ Nope. That's a common misconception... You can scale only if you use a commercia
 
 Not-a-big-fan-of-closed-source. Period.
 
-On the other hand, PostgreSQL table partitioning in our specific case comes at huge help, and old data might be archived or streamed on a secondary PostgreSQL DWH machine.
+On the other hand, PostgreSQL table partitioning in our specific case would come at huge help, and old data might be archived or streamed on a secondary PostgreSQL DWH machine.
 
 
 But time is tyrant, and my backlog is full of things to do, therefore I should stop here.. for now :)
 
-My verdict is that under the tested use cases, if disk space is really a constraint, then InfluxDB is the way to go, at expenses of queries on old data.
+My verdict is that under the tested use cases, if disk space is really a constraint, then InfluxDB will be the way to go here at [Portavita][Portavita], at expenses of queries on old data.
 And of the coffee machine I usually find comfort in, when I'm waiting for such kind of outputs.
 
 If disk space is not a concern, then I would definitely go for PostgreSQL.
