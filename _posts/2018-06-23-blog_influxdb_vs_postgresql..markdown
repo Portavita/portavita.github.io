@@ -538,7 +538,7 @@ Many people like the plug-and-play way of work of InfluxDB which I bet is a grea
 This is a summary of the tests:
 
 
-Test Type  | InfluxDB | PostgreSQL + BTREE | PostgreSQL + BRIN |
+|Test Type  | InfluxDB | PostgreSQL + BTREE | PostgreSQL + BRIN |
 | --- | --- | --- | --- |
 | Disk Usage |   **87 MB**     | 318 MB   |    211MB |
 |  Query the whole COLD CACHE    | 26.2 sec |     **3.7 sec** |    **3.7 sec** |
