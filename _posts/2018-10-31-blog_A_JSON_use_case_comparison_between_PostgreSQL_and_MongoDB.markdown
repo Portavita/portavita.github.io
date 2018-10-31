@@ -18,7 +18,7 @@ Here at [Portavita][portavita] we work with a lot of data in the JSON format and
 
 Since version 9.2, also PostgreSQL is able to talk JSON and several progresses have been made over the years making PostgreSQL more and more production ready to serve JSON efficiently.
 
-Since recently a new project has been kickstarted here at Portavita, and since Portavita uses both PostgreSQL and MongoDB, the following question arose spontaneously: which database is the most suitable to support our use cases?
+Very recently, a new project has been kickstarted here at Portavita, and since Portavita uses both PostgreSQL and MongoDB, the following question arose spontaneously: which database is the most suitable to support our use cases?
 
 Me and my colleague Wouter discussed the topic and did some preliminary research trying to compare on query execution speed and disk space consumption.
 After all that reading, learning, asking and studying, the conclusion was that we did not have a clue if Mongo was still the best choice to store our JSON data.
@@ -27,7 +27,7 @@ That is the reason behind the decision to perform some tests by ourself and star
 
 So here we are sharing our results for your consideration, and in the hope our efforts might turn handy to some other people out there.
 
-If you notice inaccuracy, mistakes, or anything that you want to discuss, please reach out to us.
+If you notice inaccuracy, mistakes, or anything that you want to discuss, please reach out to us. (f.pardi@portavita.eu  and w.van.teijlingen@portavita.eu)
 
 The topic is to us complex and vast, and we are more than willing to listen from you and hopefully learn from it.
 
@@ -38,11 +38,11 @@ Now that you know 'why' we felt the need to experiment with both systems ourselv
 
 We used a test machine running CentOS 6.8 equipped with one SSD disk, 10 GB RAM, and 4 cores. It's the same virtual machine we already used in the past to run tests on several different products (like in the previous blog post when I compared InfluxDB to Postgres).
 
-While not optimal (I would’ve prefered bare metal), this is what we had available for testing. This setup allows read-only benchmarks, since there are no 2 separate set of disks.
+While not optimal (I would’ve prefered bare metal), this is what we had available for testing. This setup allows read-only benchmarks, since there are no separate set of disks for data and journaling.
 
 Both Mongo and Postgres were installed on the machine, and only one product was running at the time. All tests were repeated over multiple runs, and only the average is reported.
 
-As dataset, we used anonymized data derived from real data. As generic good practice, and as demanded by law in case of medical records, all data is anonymized, and subsequently  made accessible to employees. On top of that, for security reasons, on this paper all the mentioned fields have been altered in the name and in their content, and unnecessary ones completely removed.
+As dataset, we used anonymized data derived from real data. As generic good practice, and as demanded by law in case of medical records, all data is anonymized, and subsequently  made accessible to employees. On top of that, for security reasons, on this paper all the mentioned fields have been altered in the name and in their content, and not relevant ones completely removed.
 
 Both versions of Postgres and Mongo that we’ve used are vanilla versions.
 
@@ -72,7 +72,7 @@ operationProfiling:
   slowOpThresholdMs: 0
 ```
 
-The dataset comes from an existing project in use with Mongo and is composed of several collections. The data is structured as specified in the FHIR message exchange format standards.
+The dataset comes from an existing project in use with Mongo and is composed of several collections. The data is structured as specified in the [FHIR][FHIR] message exchange format standards.
 
 While this research can be considered as a standalone paper, we are planning to use it as starting point for future studies.
 
@@ -125,7 +125,7 @@ ALTER TABLE fhir3.x_table
   USING data::jsonb;
 ```
 
-The table usage goes up to 1201 MB.
+The table usage goes up to 1201 MB from 981 MB.
 
 This is a complete overview of the space usage in JSONB on Postgres 9.6.6
 
@@ -347,7 +347,8 @@ We can then notice that the plan becomes more efficient:
 
 Cold: 250 ms
 
-Warm: 0.72 ms (+ - 90ms)
+Warm: 0.72 ms (+ - 0.09 ms)
+
 Our learning path is slow but constant!.. 
 
 
@@ -359,7 +360,7 @@ Using this index instead (which is default for GIN indexes):
  CREATE INDEX gin_idx ON fhir3.MY_table USING GIN (data);
 ```
 
-Runtimes go up (warm runs: 2x in the first query, 1.5 in the second) but this index also supports the operators @>, ?, ?& and ?| while jsonb_path_ops only supports @>
+Runtimes go up (warm runs: 2x in the first query, 1.5 in the second) but this index also supports the operators @>, ?, ?& and '?|' while jsonb_path_ops only supports @>
 
 
 The size of the default GIN index is bigger than the jsonb_path_ops: 21MB vs 15MB
@@ -623,7 +624,7 @@ Note: we could also create a very very specific composite index on MarriageDate 
 
 In that case, if both indexes live together (MarriageDate, and the composite one) then the latter is used, and runtime goes down to 30 ms.
 
-But this is a very specific case and to follow this pattern will lead to a linear increase of the total number of indexes when compared to the queries se use.
+But this is a very specific case and to follow this pattern will lead to a linear increase of the total number of indexes when compared to the required queries.
 
 ## Newer Mongo DBs
 
@@ -654,7 +655,7 @@ Best performances are on Mongo 4.0.
 | Database        |      Conditions |  Cold Cache (ms) |   Warm Cache (ms)  |    Data Disk Space    |    Disk Space taken from index (MB) |
 | --- | --- | --- | --- | --- | --- |
 | Postgres 10.5   |     No Index         |    711   | 30         | 71 GB  |     -                          |
-| Postgres 10.5   |     Indexed    |    121   |     0.544     | 71 GB  |  15 MB (on the whole data)   |
+| Postgres 10.5   |     Indexed    |    121   |     0.544     | 71 GB  |  15 MB (on the whole 45MB table)   |
 | Mongo 4.0       |     No Index         |    147   |    71         | 36 GB  |     -                          |
 | Mongo 4.0       |     Indexed    |     40     |     0.x?     | 36 GB  |     1 MB (on MarriageDate)        |
 
@@ -672,7 +673,7 @@ About query speed, we can see that if data is loaded in cache/RAM then Postgres 
 
 Differently, if data is not in cache, Mongo performs better. 
 
-There is no definite winner because both provide advantages and disadvantages depending on your use case.
+There is no definitive winner because both provide advantages and disadvantages depending on your use case.
 
 Much depends on the dataset size and machine equipment, together with the data usage pattern which might require more or less indexes to be present.
 
@@ -773,5 +774,6 @@ While jsquery does not speed up queries in our scenario, we think it might be ve
 
 
 [portavita]: https://www.portavita.com/
+[FHIR]: https://en.wikipedia.org/wiki/Fast_Healthcare_Interoperability_Resources
 [mgrid]: https://www.mgrid.net/
 [jsquery]: https://github.com/postgrespro/jsquery/blob/master/README.md
