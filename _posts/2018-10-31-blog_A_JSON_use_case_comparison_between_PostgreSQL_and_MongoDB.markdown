@@ -17,14 +17,15 @@ Here at [Portavita][portavita] we work with a lot of data in the JSON format and
 
 
 Since version 9.2, also PostgreSQL is able to talk JSON and several progresses have been made over the years making PostgreSQL more and more production ready to serve JSON efficiently.
+
 Since recently a new project has been kickstarted here at Portavita, and since Portavita uses both PostgreSQL and MongoDB, the following question arose spontaneously: which database is the most suitable to support our use cases?
 
-Me and my colleague Wouter discussed the topic and did some preliminary research trying to compare on ease of administration and development, query execution speed and disk space consumption.
+Me and my colleague Wouter discussed the topic and did some preliminary research trying to compare on query execution speed and disk space consumption.
 After all that reading, learning, asking and studying, the conclusion was that we did not have a clue if Mongo was still the best choice to store our JSON data.
 
-That is the reason behind the decision to perform some tests by our self and start discussing with some numbers at hand.
+That is the reason behind the decision to perform some tests by ourself and start discussing with some numbers at hand.
 
-Here we are sharing our results for your consideration, and in the hope our efforts might turn handy to some other people out there.
+So here we are sharing our results for your consideration, and in the hope our efforts might turn handy to some other people out there.
 
 If you notice inaccuracy, mistakes, or anything that you want to discuss, please reach out to us.
 
@@ -33,11 +34,11 @@ The topic is to us complex and vast, and we are more than willing to listen from
 # How and what
 
 
-Now that you know 'why' we felt that we need to experiment with both systems ourselves. I will tell you more about what we actually did to benchmark one product versus the other.
+Now that you know 'why' we felt the need to experiment with both systems ourselves, I will tell you more about what we actually did to benchmark one product versus the other.
 
-We used a test machine running CentOS 6.8 equipped with one SSD disk, 10 GB RAM, and 4 cores. It's the same virtual machine we already used in the past to run tests on several different products.
+We used a test machine running CentOS 6.8 equipped with one SSD disk, 10 GB RAM, and 4 cores. It's the same virtual machine we already used in the past to run tests on several different products (like in the previous blog post when I compared InfluxDB to Postgres).
 
-While it is not optimal (I would’ve prefered bare metal), this is what had available for testing. This  setup allows read-only benchmarks, since there are no 2 separate set of disks.
+While not optimal (I would’ve prefered bare metal), this is what we had available for testing. This setup allows read-only benchmarks, since there are no 2 separate set of disks.
 
 Both Mongo and Postgres were installed on the machine, and only one product was running at the time. All tests were repeated over multiple runs, and only the average is reported.
 
@@ -128,7 +129,7 @@ The table usage goes up to 1201 MB.
 
 This is a complete overview of the space usage in JSONB on Postgres 9.6.6
 
-```
+
 |    Relation      | Schema | Total size |
 |---|---| --- |
 | m_table         | fhir2    | 37 GB   |
@@ -143,12 +144,11 @@ This is a complete overview of the space usage in JSONB on Postgres 9.6.6
 | w_table     | fhir3    | 849 MB  |
 | MY_table         | fhir3    | 45 MB   |
 | z_table    | fhir3    | 744 kB  |
-```
+
 
 
 If we use Postgres 10.5 instead (fhir3 only):
 
-```
 |    Relation      | Schema | Total size |
 |---|---| --- |
 | x_table       | fhir3  | 1193 MB |
@@ -156,7 +156,7 @@ If we use Postgres 10.5 instead (fhir3 only):
 | w_table     | fhir3  | 835 MB |
 | MY_table         | fhir3  | 45 MB |
 | z_table    | fhir3  | 760 KB |
-```
+
  
 So it looks like Postgres 10.5 uses the space slightly more efficiently than 9.6.6
 
@@ -168,14 +168,14 @@ In our opinion JSONB is the way to go because we need indexes and the additional
 ## Disk Space Comparison Table
 
 
-```
+
 | Type of data |    Disk Space (GB) |    Notes  |
 | --- | --- | --- |
 | Exported JSON files |  106     |                         |     
 | MongoDB                |  36       |                        |
 | PostgreSQL 9.6.6     |  66        |   JSON format    |
 | PostgreSQL 9.6.6        |  71        |   JSONB format     |
-```
+
 
 
 # Benchmarking the query
@@ -637,7 +637,7 @@ I therefore report here below the timings I got running the same query under the
 'Indexed' means the index is placed on MarriageDate
 
 |Mongo version  | Not indexed in ms (cold, warm)| Indexed in ms (cold,warm) |
-| --- | --- | --- | --- |
+| --- | --- | --- | 
 | Mongo 3.2      |  278, 70    | 44, 0.x   |
 | Mongo 3.4.17 |  150, 70    | 45, 0.x   |    
 | Mongo 3.6.8   |  152, 67    | 47, 0.x   |    
@@ -677,6 +677,7 @@ There is no definite winner because both provide advantages and disadvantages de
 Much depends on the dataset size and machine equipment, together with the data usage pattern which might require more or less indexes to be present.
 
 Does your database entirely fit in RAM? Then Postgres is faster.
+
 Is disk space a big constraint because you are storing a lot of data? Mongo will save you ½ of the space in comparison with Postgres.
 
 Do you have a big database, you are not concerned about disk space and you usually only query a fraction of that data which also fits your RAM? Then go for Postgres.
@@ -684,7 +685,8 @@ Do you have a big database, you are not concerned about disk space and you usual
 Of course we are willingly not taking into consideration a very wide range of decisional aspects like the easiness of writing a query, the possibility to use Postgres extensions, the possibility to read from secondary on Postgres, or use sharding (Postgres and Mongo), table partitioning (Postgres) or maybe decouple some fields for our JSON data and insert it on a Postgres column of our JSON table. 
 
 Today’s comparison is only based on a few simple parameters and that’s it.
-It is restrictive and not complete? Probably yes. But the problem is complex and if we dive in the specific, then every case you might have would be peculiar.
+
+It is restrictive and not complete? Probably yes. But the problem is complex and if we dive in the specific, then every case you might face would be peculiar.
 
 About how data was indexed, something worth noticing, is that we used a generic index on 'data' for Postgres which takes a lot of space but also is a kind of silver bullet because it covers a lot of use cases (the whole data is in there).
 
@@ -699,7 +701,9 @@ On Mongo we took into consideration only an index on ‘MarriageDate’, which h
 
 # Bonus Track: jsquery
 
-Our colleague Yeb Havinga from [mgrid][MGRID] pointed us to [jsquery][jsquery], which is a very nice Postgres extension.
+Our colleague Yeb Havinga from [MGRID][MGRID] pointed us to [jsquery][jsquery], which is a very nice Postgres extension.
+
+A little gem.
 
 There are several advantages in using jsquery: an effective way to search in nested objects and arrays, flexibility in the queries and 'detoast fields one time only' are some of them.
 
