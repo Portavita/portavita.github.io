@@ -185,6 +185,7 @@ Available compression options are snappy(default), zlib and none.
 We compared the usage only for 'fhir3.MY_table'. Here is a summary:
 
 | Compression | Disk Space (MB) | 
+| --- | --- |
 | none   |  38  |
 | Snappy |  5.4 |
 | zlib   |  2.4 |
@@ -666,6 +667,7 @@ On Mongo 4.0 we also tested how different compression options are performing. He
 
 
 |Mongo version     | Not indexed in ms (cold, warm)| Indexed in ms (cold,warm) |
+| --- | --- | --- |
 | snappy (default) | 147,  71    | 40, 0.x  |
 | zlib             | 170,  68    | 70, 0.x  |
 | none             | 3350, 70    | 83, 0.x  |
