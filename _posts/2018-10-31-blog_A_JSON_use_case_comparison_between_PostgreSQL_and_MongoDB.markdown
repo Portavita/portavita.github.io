@@ -180,7 +180,7 @@ In our opinion JSONB is the way to go because we need indexes and the additional
 
 While exploring the topic, for the sake of completeness we also compared the disk usage for Mongo under different compression options. 
 
-Available compression options are snappy(default), zlib and none.
+Available compression options are snappy (default), zlib and none.
 
 We compared the usage only for 'fhir3.MY_table'. Here is a summary:
 
@@ -672,7 +672,7 @@ On Mongo 4.0 we also tested how different compression options are performing. He
 | zlib             | 170,  68    | 70, 0.x  |
 | none             | 3350, 70    | 83, 0.x  |
 
-We can conclude that Mongo performs better when using'snappy' compression. Interesting to know anyhow, is that 'zlib' performs decently delivering excellent compression rate.    
+We can conclude that Mongo performs better when using 'snappy' compression. Interesting to know anyhow, is that 'zlib' performs decently delivering excellent compression rate.    
 
 
 ## Summary of Postgres VS Mongo (using 'snappy' compression)
