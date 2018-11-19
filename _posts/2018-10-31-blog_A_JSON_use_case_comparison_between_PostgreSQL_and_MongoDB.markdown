@@ -6,7 +6,7 @@ categories: PostgreSQL MongoDB Performances Benchmarking
 author: Fabio Pardi and Wouter van Teijlingen
 ---
 
-Last Update: 2018-11-19 15:01 - Add: Comparison on Mongo compression 
+Last Update: November 11, 2018 - Added: Comparison on Mongo compression 
 
 
 
