@@ -6,6 +6,8 @@ categories: PostgreSQL MongoDB Performances Benchmarking
 author: Fabio Pardi and Wouter van Teijlingen
 ---
 
+Last Update: 2018-11-19 15:01 - Add: Comparison on Mongo compression 
+
 
 
 ![Mongo_VS_Postgres](https://raw.githubusercontent.com/Portavita/portavita.github.io/master/img/mongo_vs_postgres.jpeg)
@@ -168,7 +170,6 @@ In our opinion JSONB is the way to go because we need indexes and the additional
 ## Disk Space Comparison Table
 
 
-
 | Type of data |    Disk Space (GB) |    Notes  |
 | --- | --- | --- |
 | Exported JSON files |  106     |                         |     
@@ -177,6 +178,18 @@ In our opinion JSONB is the way to go because we need indexes and the additional
 | PostgreSQL 9.6.6        |  71        |   JSONB format     |
 
 
+While exploring the topic, for the sake of completeness we also compared the disk usage for Mongo under different compression options. 
+
+Available compression options are snappy(default), zlib and none.
+
+We compared the usage only for 'fhir3.MY_table'. Here is a summary:
+
+| Compression | Disk Space (MB) | 
+| none   |  38  |
+| Snappy |  5.4 |
+| zlib   |  2.4 |
+
+As a reference, size on PostgreSQL is 45 MB 
 
 # Benchmarking the query
 
@@ -649,8 +662,18 @@ We definitely see improvements in Mongo in the major releases, mostly in retriev
 
 Best performances are on Mongo 4.0.
 
+On Mongo 4.0 we also tested how different compression options are performing. Here is a summary:
 
-## Summary of Postgres VS Mongo
+
+|Mongo version     | Not indexed in ms (cold, warm)| Indexed in ms (cold,warm) |
+| snappy (default) | 147,  71    | 40, 0.x  |
+| zlib             | 170,  68    | 70, 0.x  |
+| none             | 3350, 70    | 83, 0.x  |
+
+We can conclude that Mongo performs better when using'snappy' compression. Interesting to know anyhow, is that 'zlib' performs decently delivering excellent compression rate.    
+
+
+## Summary of Postgres VS Mongo (using 'snappy' compression)
 
 | Database        |      Conditions |  Cold Cache (ms) |   Warm Cache (ms)  |    Data Disk Space    |    Disk Space taken from index (MB) |
 | --- | --- | --- | --- | --- | --- |
