@@ -6,7 +6,7 @@ categories: PostgreSQL MongoDB Performances Benchmarking
 author: Fabio Pardi and Wouter van Teijlingen
 ---
 
-Last Update: November 11, 2018 - Added: Comparison on Mongo compression 
+Last Update: November 20, 2018 - Added: Postgres table creation details
 
 
 
@@ -100,6 +100,10 @@ but significantly faster to process, since no reparsing is needed. jsonb also su
 
 We stored every single collection into a Postgres table. Two schemas are holding the tables: fhir2 and fhir3, which correspond basically to the data exchange format they belong to.
 
+The tables has been initially created as:
+```
+ create table schema.table (data json not null );
+ ```
 We started experimenting on Postgres 9.6.6, and later on Postgres 10.5 and this is a granular view of the space usage using plain JSON on 9.6.6:
 
 |    Relation      | Schema | Total size |
