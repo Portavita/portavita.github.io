@@ -52,15 +52,15 @@ After turning wal_compression on and running Jenkins against it, I was immediate
 Here at [Portavita][portavita], we handle medical data and can happen to have a disk or a partition encrypted. 
 
 Some database host in particular, running on a VM, does not have 'aes' flag on the virtual CPU (read: encryption is slow and painful) and also runs on HDD. 
-To make it worst, WAL is not separate from Data (it makes me cry, but..'Take it or leave it' )
+To make it worse, WAL is not separate from Data (it makes me cry, but..'Take it or leave it' )
 
 ## The Results
 
 ### VMs on test env
 
-Consider this machine as the worst case scenario, the DBA nightmare setup.
+Consider this machine as the worse case scenario, the DBA nightmare setup.
 
-This is what happens when you enabled wal_compression. 
+This is what happens when you enabled wal_compression.
 
 Pressure on disk is relieved. 
 
@@ -80,7 +80,7 @@ No need to tell you at which point in time wal_compression has been enabled!
 
 Here instead you can see the benefits on a master-slave setup, configured by the book and running on SSDs.
 
-Since I have them available, we can see real-life data. 
+Since I have them available, I can show you real-life data. 
 
 As you can see, from the moment wal_compression has been enabled we have less network activity.
 
@@ -102,7 +102,7 @@ On all the production hosts, WAL files production went down up to 50%.
 
 # Conclusion
 
-With one single setting, we can save on disk space, bandwidth and disk IO. We can therefore make better use of our prcious resources
+With one single setting, we can save on disk space, bandwidth and disk IO. We can therefore make better use of our precious resources.
 
 Something worth considering on every database!
 
