@@ -94,7 +94,7 @@ wal_compression has been turned on on the 9th, around 11 AM. Consider that over 
 
 ![CPU impact](https://raw.githubusercontent.com/Portavita/portavita.github.io/master/img/cpu_prod_master.jpeg)
 
-
+CPU usage is slightly higher when wal_compression is on.
 
 ### WAL files production
 
