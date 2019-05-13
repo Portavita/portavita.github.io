@@ -31,13 +31,13 @@ It is sometimes mentioned, mostly underrated and frequently ignored. It is a fea
 
 PostgreSQL official docs refer to it as:
 
-```
-wal_compression (boolean)
+
+    wal_compression (boolean)
 
     When this parameter is on, the PostgreSQL server compresses a full page image written to WAL when full_page_writes is on or during a base backup. A compressed page image will be decompressed during WAL replay. The default value is off. Only superusers can change this setting.
 
     Turning this parameter on can reduce the WAL volume without increasing the risk of unrecoverable data corruption, but at the cost of some extra CPU spent on the compression during WAL logging and on the decompression during WAL replay.
-```
+
 
 I was intrigued and I decided to give it a try.
 
@@ -51,7 +51,8 @@ After turning wal_compression on and running Jenkins against it, I was immediate
 
 Here at [Portavita][portavita], we handle medical data and can happen to have a disk or a partition encrypted. 
 
-Some database host in particular, running on a VM, does not have 'aes' flag on the virtual CPU (read: encryption is slow and painful) and, also runs on HDD. Add to it that WAL is not separate from Data (It makes me cry, but..'Take it or leave it' )
+Some database host in particular, running on a VM, does not have 'aes' flag on the virtual CPU (read: encryption is slow and painful) and also runs on HDD. 
+To make it worst, WAL is not separate from Data (it makes me cry, but..'Take it or leave it' )
 
 ## The Results
 
@@ -77,9 +78,15 @@ No need to tell you at which point in time wal_compression has been enabled!
 
 ### Production hosts on SSD
 
-Here instead you can see the benefits on a master-slave setup, running an out of the book recipe on SSDs.
+Here instead you can see the benefits on a master-slave setup, configured by the book and running on SSDs.
 
-Since I have them available, we can see the real-life data. As you can see, since wal_compression was enabled, less WAL disk activity and consequent network activity (WAL files are archived) at the cost of some CPU cycle.
+Since I have them available, we can see real-life data. 
+
+As you can see, from the moment wal_compression has been enabled we have less network activity.
+
+Less WAL files are created, resulting in less disk activity and the consequent WAL archival related network traffic.
+
+All, at the cost of some CPU cycles. 
 
 ![Bandwidth usage](https://raw.githubusercontent.com/Portavita/portavita.github.io/master/img/bandwidth_slave_prod.jpeg)
 
