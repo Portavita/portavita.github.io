@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "About wal_compression"
+title:  "About wal_compression on PostgreSQL"
 date:   2019-05-13 17:14:56 +0200
 categories: PostgreSQL Performances Benchmarking
 author: Fabio Pardi
@@ -20,9 +20,9 @@ As part of this periodic assessment, I also review from scratch the configuratio
 Configuration file is therefore parsed line by line to see if the settings are matching the current workload and needs. 
 I also try out parameters I did not consider in the past or I thought were 'not for us' or 'not for now'. 
 
-It might sound boring to review everything bit by bit, but I can tell you is rewarding and one can learn a lot from that.
+It might sound boring to review everything bit by bit, but I can tell you it is a rewarding process and one can learn a lot from that.
 
-Today I want to talk to you about how I saved 50% space and bandwidth, and increased performances turning on one single parameter.
+Today I want to talk to you about how I saved 50% space and bandwidth, and increased performances by turning on one single parameter.
 
 
 # The magic
@@ -31,20 +31,19 @@ It is sometimes mentioned, mostly underrated and frequently ignored. It is a fea
 
 PostgreSQL official docs refer to it as:
 
-'''
+```
 wal_compression (boolean)
 
     When this parameter is on, the PostgreSQL server compresses a full page image written to WAL when full_page_writes is on or during a base backup. A compressed page image will be decompressed during WAL replay. The default value is off. Only superusers can change this setting.
 
     Turning this parameter on can reduce the WAL volume without increasing the risk of unrecoverable data corruption, but at the cost of some extra CPU spent on the compression during WAL logging and on the decompression during WAL replay.
-'''
-
+```
 
 I was intrigued and I decided to give it a try.
 
 Fortunately, I have my friend Mr Jenkins that runs some pgbench test every night, so I have some baseline ready, to compare with. 
 
-After running it, I was immediately flabbergasted by the gain...
+After turning wal_compression on and running Jenkins against it, I was immediately flabbergasted by the gain...
 
 # Benchmarking results
 
@@ -60,11 +59,20 @@ Some database host in particular, running on a VM, does not have 'aes' flag on t
 
 Consider this machine as the worst case scenario, the DBA nightmare setup.
 
-This is what happens when you enabled wal_compression. Pressure on disk is relieved. We have a net increase of performances of 100%. Also worth noticing is that CPU is actually less busy, because what is really keeping the CPU busy 
-on this setup is the encryption.
+This is what happens when you enabled wal_compression. 
+
+Pressure on disk is relieved. 
+
+We have a net increase of performances of 100%. 
+
+Also worth noticing is that CPU is actually less busy, because what is really keeping the CPU busy on this setup is the encryption.
 
 
 ![VM on HDD - encryption - no AES - no separate disks](https://raw.githubusercontent.com/Portavita/portavita.github.io/master/img/pgbench_dev.jpeg)
+
+No need to tell you at which point in time wal_compression has been enabled!
+
+
 
 
 ### Production hosts on SSD
@@ -74,6 +82,7 @@ Here instead you can see the benefits on a master-slave setup, running an out of
 Since I have them available, we can see the real-life data. As you can see, since wal_compression was enabled, less WAL disk activity and consequent network activity (WAL files are archived) at the cost of some CPU cycle.
 
 ![Bandwidth usage](https://raw.githubusercontent.com/Portavita/portavita.github.io/master/img/bandwidth_slave_prod.jpeg)
+
 wal_compression has been turned on on the 9th, around 11 AM. Consider that over that link, both streaming and WAL copy happens.
 
 ![CPU impact](https://raw.githubusercontent.com/Portavita/portavita.github.io/master/img/cpu_prod_master.jpeg)
