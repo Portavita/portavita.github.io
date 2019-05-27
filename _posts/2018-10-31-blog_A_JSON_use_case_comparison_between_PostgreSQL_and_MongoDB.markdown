@@ -798,6 +798,7 @@ Warm: 0.77 ms
 While jsquery does not speed up queries in our scenario, we think it might be very useful and maybe even faster for different and more complicated data usage patterns.
 
 
+Ideas or comments? You can find me on  [Linkedin](https://www.linkedin.com/in/fabiopardi/)
 
 
 
