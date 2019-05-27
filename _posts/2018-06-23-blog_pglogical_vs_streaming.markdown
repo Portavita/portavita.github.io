@@ -214,6 +214,9 @@ Streaming replication on the other end is dead easy to configure, mature and ver
 
 As english say: pick your poison!
 
+
+Ideas or comments? You can find me on  [Linkedin](https://www.linkedin.com/in/fabiopardi/)
+
  
 [gatling]: http://www.gatling.io
 [portavita]: https://www.portavita.com/
