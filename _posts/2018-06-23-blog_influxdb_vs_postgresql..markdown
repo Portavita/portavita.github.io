@@ -574,6 +574,9 @@ And of the coffee machine I usually find comfort in, when I'm waiting for such k
 
 If disk space is not a concern, then I would definitely go for PostgreSQL.
 
+Ideas or comments? You can find me on  [Linkedin](https://www.linkedin.com/in/fabiopardi/)
+
+
 [Influx_Docs]: https://docs.influxdata.com/influxdb/v1.6/concepts/storage_engine/
 [portavita]: https://www.portavita.com/
 [Auto_Expire]: https://docs.influxdata.com/influxdb/v1.6/
