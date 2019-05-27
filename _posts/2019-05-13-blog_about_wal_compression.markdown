@@ -107,4 +107,7 @@ With one single setting, we can save on disk space, bandwidth and disk IO. We ca
 Something worth considering on every database!
 
 
+Ideas or comments? You can find me on [Linkedin](https://www.linkedin.com/in/fabiopardi/)
+
+
 [portavita]: https://www.portavita.com/
