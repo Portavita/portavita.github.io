@@ -1,11 +1,14 @@
 ---
 layout: post
 title:  "PostgreSQL: wal_log_hints benchmarked"
-date:   2019-06-14 12:14:56 +0200
+date:   2019-06-14 11:31:56 +0200
 categories: PostgreSQL Performances Benchmarking
 author: Fabio Pardi
 ---
 
+
+
+Last update: 2019-06-14 12:05:56 +0200 - add definition of wal_log_hints
 
 
 # Intro
@@ -18,6 +21,18 @@ The manual defines it this way: ```synchronize a PostgreSQL data directory with 
 I am of the opinion that that feature is very handy in some cases, but I will talk about it another day because today I would like to talk about something related to it: wal_log_hints. 
 
 Wal_log_hints is a Postgres configuration parameter that needs to be enabled in order to use pg_rewind. Also it is needed when one wants to use data checksum.
+
+It is defined as: 
+
+```
+wal_log_hints (boolean)
+
+    When this parameter is on, the PostgreSQL server writes the entire content of each disk page to WAL during the first modification of that page after a checkpoint, even for non-critical modifications of so-called hint bits.
+
+    If data checksums are enabled, hint bit updates are always WAL-logged and this setting is ignored. You can use this setting to test how much extra WAL-logging would occur if your database had data checksums enabled.
+
+    This parameter can only be set at server start. The default value is off.
+```
 
 Basically, to be able to use data checksum or pg_rewind features, more information are needed to be recorded in the WAL files, and that usually comes at a price in terms of performances and resources.
 
