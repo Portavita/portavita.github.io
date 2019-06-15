@@ -34,7 +34,7 @@ wal_log_hints (boolean)
     This parameter can only be set at server start. The default value is off.
 ```
 
-Basically, to be able to use data checksum or pg_rewind features, more information are needed to be recorded in the WAL files, and that usually comes at a price in terms of performances and resources.
+Basically, to be able to use data checksum or pg_rewind features, more information is needed to be recorded in the WAL files, and that usually comes at a price in terms of performance and resources.
 
 As usual here at [Portavita][portavita] we like to make informed decisions, so I took my time to get some numbers. 
 
@@ -45,7 +45,7 @@ It might not represent a production load, but it should give us some directions.
 
 I used our beloved pgbench tool to run the tests. I ran it first to initialize the data, then I ran it again to query. Nothing special here.
 
-I counted the number of produced WAL files after each ran.
+I counted the number of produced WAL files after each run.
 
 As side note, I should mention that checkpoints are called a couple of times over each run and I did not notice much difference in CPU usage over the tests.
 
@@ -86,7 +86,7 @@ Brings the total produced files to 272
 ![Comparing wal_log_hints](https://raw.githubusercontent.com/Portavita/portavita.github.io/master/img/graph_wal_hints_1.png)
 
 
-It means that wal_log_hints costs to us 67% more space, disk workload, and eventually network when WAL files are archived remotely.
+It means that wal_log_hints costs us 67% more space, disk workload, and eventually network when WAL files are archived remotely.
  
 
 That's a lot. It might be for a good cause, but still is a lot.
@@ -118,7 +118,7 @@ produced 85 of them
 
 # Conclusions
 
-If you are already using wal_compression then to enable wal_log_hints comes for cheap, and that paves the way to pg_rewind and data checksum, both worth exploring.
+If you are already using wal_compression then to enable wal_log_hints comes cheap, and that paves the way to pg_rewind and data checksum, both worth exploring.
 
 If you instead are using default settings for wal_compression (off), then to enable wal_log_hints will come at a price and I suggest to you to keep a close eye to performances and disk space.
 
