@@ -1,5 +1,3 @@
-
-
 ---
 layout: post
 title:  "PostgreSQL: effective_io_concurrency benchmarked"
