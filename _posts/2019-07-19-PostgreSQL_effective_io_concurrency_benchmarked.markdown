@@ -14,6 +14,8 @@ As mentioned in a [recent post][recent post], I'm periodically reviewing all the
 effective_io_concurrency instructs PostgreSQL on how our disks are fast (or slow).
 
 It has a default value of 1, and the manual defines it this way:
+
+
 "Sets the number of concurrent disk I/O operations that PostgreSQL expects can be executed simultaneously. 
 Raising this value will increase the number of I/O operations that any individual PostgreSQL session attempts to initiate in parallel. 
 The allowed range is 1 to 1000, or zero to disable issuance of asynchronous I/O requests. Currently, this setting only affects bitmap heap scans.
@@ -26,7 +28,7 @@ SSDs and other memory-based storage can often process many concurrent requests, 
 
 # The setup
 
-Tested on PostgreSQL 9.6
+PostgreSQL 9.6 on a Linux host.
 
 In order to test on a bitmap heap scan, I created an ad-hoc table:
 ```
