@@ -15,7 +15,6 @@ effective_io_concurrency instructs PostgreSQL on how our disks are fast (or slow
 
 It has a default value of 1, and the manual defines it this way:
 
-```
 Sets the number of concurrent disk I/O operations that PostgreSQL expects can be executed simultaneously. 
 
 Raising this value will increase the number of I/O operations that any individual PostgreSQL session attempts to initiate in parallel. 
@@ -29,7 +28,7 @@ However, if the database is often busy with multiple queries issued in concurren
 SSDs and other memory-based storage can often process many concurrent requests, so the best value might be in the hundreds.
 
 [..]
-```
+
 
 
 # The setup
