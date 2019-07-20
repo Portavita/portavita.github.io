@@ -103,6 +103,13 @@ Also, the number of IOPS is impacted, resulting in less IOPS:
 ![Effective_io_conc.png‎](https://raw.githubusercontent.com/Portavita/portavita.github.io/master/img/Effective_io_conc_IOPS.jpeg)
 
 
+The graphs for values of 20 and 1000 are similar to the one above, as are the results.
+
+# Conclusions
+
+It is well worth tuning effective_io_cache on your database. 
+
+And once again, it is proven that the time spent in exploring, experimenting and tuning is time well spent!
 
 Ideas or comments? You can find me on [Linkedin](https://www.linkedin.com/in/fabiopardi/)
 
