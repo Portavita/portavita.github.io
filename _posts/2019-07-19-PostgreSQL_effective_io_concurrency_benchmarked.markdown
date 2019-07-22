@@ -6,6 +6,8 @@ categories: PostgreSQL Performances Benchmarking
 author: Fabio Pardi
 ---
 
+2019-07-22 update: add specs about CPU (number of cores)
+
 
 # Intro
 
@@ -28,7 +30,7 @@ SSDs and other memory-based storage can often process many concurrent requests, 
 
 # The setup
 
-PostgreSQL 9.6 on a Linux host.
+PostgreSQL 9.6 on a Linux host. Hardware served by 32 cores
 
 In order to test on a bitmap heap scan, I created an ad-hoc table:
 ```
@@ -60,7 +62,7 @@ or <= 900)))
                Index Cond: ((minor >= 800) AND (minor <= 900))
 ```
 
-The test runs against a machine equipped with SSDs and configured in RAID 10, but I obtained similar results on a machine with only one SSD.
+The test runs against a machine equipped with SSDs and configured in RAID 10, but I obtained similar results on a machine with only one SSD (VM with 6 cores).
 
 
 # The test
