@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "OWASP Dependency Checks and Management of Software of Unknown Provenance"
-date:   2019-11-19 10:01:00 +0200
+date:   2019-09-19 11:06:00 +0200
 categories: owasp soup
 author: Wouter van Teijlingen
 ---
