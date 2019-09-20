@@ -29,7 +29,7 @@ That is the reason behind the decision to perform some tests by ourself and star
 
 So here we are sharing our results for your consideration, and in the hope our efforts might turn handy to some other people out there.
 
-If you notice inaccuracy, mistakes, or anything that you want to discuss, please reach out to us. (f.pardi@portavita.eu  and w.van.teijlingen@portavita.eu)
+If you notice inaccuracy, mistakes, or anything that you want to discuss, please reach out to us. (f.pardi@portavita.eu)
 
 The topic is to us complex and vast, and we are more than willing to listen from you and hopefully learn from it.
 
