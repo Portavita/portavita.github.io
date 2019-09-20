@@ -3,7 +3,7 @@ layout: post
 title:  "A JSON use case comparison between PostgreSQL and MongoDB"
 date:   2018-10-31 12:14:56 +0200
 categories: PostgreSQL MongoDB Performances Benchmarking
-author: Fabio Pardi and Wouter van Teijlingen
+author: Fabio Pardi
 ---
 
 Last Update: November 20, 2018 - Added: Postgres table creation details
