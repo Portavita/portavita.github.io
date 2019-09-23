@@ -58,6 +58,10 @@ Workflow integration in our JIRA platform is suboptimal. That is: a developer ha
 
 For now we have a system in place that fulfills our requirements and is actively used in Portavita. There are some disadvantages but at least we believe the tools help us to improve software security and quality.
 
+#### Contact
+
+For more info you can contact [soup@portavita.eu](mailto:soup@portavita.eu?Subject=Portavita%20Devblog).
+
 #### Resources
 
 [1] https://www.owasp.org/index.php/OWASP_Dependency_Check
