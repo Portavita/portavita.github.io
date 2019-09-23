@@ -30,7 +30,7 @@ I think that management of software dependencies is important. It’s shocking t
 
 Anyway, this - and the fact that we are required to do so - is why we at Portavita have decided to take on SOUP management. There are many options that you can pick to implement SOUP. The thing is: setting this up is very much organization-specific. You have to consider development workflows, build infrastructure, organization structure and developers.
 
-SOUP management is about scrutinizing your dependencies. There are three classes: A, B, and C. Class A is the easiest to administer and C is the hardest [5]. What we need is an automated way to collect dependencies of our software projects and a tool to record details of the dependencies that we use. In the following section I’ll explain how we use the OWASP dependency checks to feed our SOUP management tool.
+SOUP management is about scrutinizing your dependencies. In IEC 62304 ('Medical device software life-cycle processes') there are three classes: A, B, and C. Class A is the easiest to administer and C is the hardest [5]. What we need is an automated way to collect dependencies of our software projects and a tool to record details of the dependencies that we use. In the following section I’ll explain how we use the OWASP dependency checks to feed our SOUP management tool.
 
 #### OWASP and SOUP Integration
 
