@@ -9,7 +9,7 @@ author: Fabio Pardi
 
 
 
-<img src="https://raw.githubusercontent.com/Portavita/portavita.github.io/master/img/kafka_head_prague.jpg" width="320" height="460">Franz Kafka Head Sculpture on display in Prague
+<img src="https://raw.githubusercontent.com/Portavita/portavita.github.io/master/img/kafka_head_prague.jpg" width="320" height="460">Franz Kafka's Head - Prague
 
 
 
@@ -46,7 +46,8 @@ First of all my recommendation is to work in a devops fashion way involving your
 
 
 
-<img src="https://raw.githubusercontent.com/Portavita/portavita.github.io/master/img/sharing_caring.jpg" width="640" height="426">Let's get our hands dirty together!
+<img src="https://raw.githubusercontent.com/Portavita/portavita.github.io/master/img/sharing_caring.jpg" width="640" height="426">
+Let's get our hands dirty together!
 
 
 
