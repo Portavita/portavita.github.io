@@ -47,7 +47,6 @@ First of all my recommendation is to work in a devops fashion way involving your
 
 
 <img src="https://raw.githubusercontent.com/Portavita/portavita.github.io/master/img/sharing_caring.jpg" width="640" height="426">
-smaller typ
 
 
 How data is produced and consumed depends very much from the kind of data and the use you make of it.
