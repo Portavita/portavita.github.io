@@ -9,10 +9,16 @@ author: Fabio Pardi
 
 
 
+<img src="https://raw.githubusercontent.com/Portavita/portavita.github.io/master/img/kafka_head_prague.jpg" width="320" height="460"><div>Franz Kafka Head Sculpture on display in Prague</div>
+
+
+
+# Intro
 
 As times change, also technology does.
 
-Many of us started their careers or studies at what I call the 'Hardware Times'. Software was running straight on the OS running straight on the Hardware.
+
+Many of us started their career or studies at what I call the 'Hardware Times'. Software was running straight on the OS running straight on the Hardware.
 
 After that, the Virtual Machines came along. A new layer on top of the hardware allowed multiple machines to run on the OS which runs on the Hardware.
 
@@ -27,7 +33,7 @@ When it comes to data in particular, the requirements sometimes do not match wit
 That is the case of running data intensive PostgreSQL installations on K8s. But for today I will spare you this story...
 
 
-What I would like to talk to you about this time, is Kafka on K8s.
+What I would like to talk to you about this time is Kafka on K8s.
 
 Kafka can run in a cluster and allows horizontal scaling without much effort. If you do your homework properly then you will be able to design a proper architecture which keeps the worries at the door.
 
@@ -37,6 +43,12 @@ Since it is not possible to describe in one single article how to properly setup
 # Sharing is Caring
 
 First of all my recommendation is to work in a devops fashion way involving your developers in the architecture. Kafka brokers, the consumers and the producers are all part of an ecosystem.
+
+
+
+<img src="https://raw.githubusercontent.com/Portavita/portavita.github.io/master/img/sharing_caring.jpg" width="640" height="426"><div>Let's get our hands dirty together!</div>
+
+
 
 How data is produced and consumed depends very much from the kind of data and the use you make of it.
 
