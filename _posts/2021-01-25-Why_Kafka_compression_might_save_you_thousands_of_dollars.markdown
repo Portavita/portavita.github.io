@@ -9,7 +9,7 @@ author: Fabio Pardi and Bob Sloots
 
 # Alice and Bob
 
-If you work in the IT field, then you might have ended up reading the stories of Alice and Bob.'
+If you work in the IT field, then you might have ended up reading the stories of 'Alice and Bob'.
 
 Alice and Bob are fictional characters commonly used as placeholders. It is a convenient way to tell a story when Alice and Bob are there, instead of using person X and person Z or 'Cthulhu' and 'Godzilla'.
 
