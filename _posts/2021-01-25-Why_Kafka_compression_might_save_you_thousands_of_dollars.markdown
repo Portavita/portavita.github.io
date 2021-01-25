@@ -137,4 +137,6 @@ Every technology comes with some home works and Kafka is no exception. The time 
 If you do not have that time, you can still hire an expert to do the job for you. You might end up spending a few hundred dollars and have an huge return for all the years to come.
 
 
-Ideas or comments? You can find me on [Linkedin](https://www.linkedin.com/in/fabiopardi/)
+Ideas or comments? You can find us on Linkedin:
+[Fabio](https://www.linkedin.com/in/fabiopardi/)
+[Bob](https://www.linkedin.com/in/bob-sloots-860b5921)
