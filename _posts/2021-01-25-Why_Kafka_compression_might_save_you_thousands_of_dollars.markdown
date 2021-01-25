@@ -42,7 +42,7 @@ One cold winter morning Fabio is walking his dog and thinking about the recent w
 Unlike the previous Kafka project he rolled out, he did not give all instructions and directions to his developers colleagues.
 
 
-Fabio: After all, it is not a brand new project but we are porting something that already existed
+Fabio: After all, it is not a brand new project but we are porting something that already existed.
 
 Inner Fabio: yes, but... now Kafka runs in replica and not standalone. And also the previous time developers 'just made it running'.
 
@@ -52,7 +52,7 @@ Then Fabio goes back home, and calls Bob...
 
 Fabio: Hey Bob, did you review the Kafka producer settings?
 
-Bob: No, I did not but it might be a good idea
+Bob: No, I did not but it might be a good idea.
 
 
 Not long after we realized that producer was not guaranteeing ['Atomicity'](https://en.wikipedia.org/wiki/ACID#Characteristics). Therefore commits might get lost.
@@ -66,7 +66,7 @@ After Bob fixed that, we then started digging more into the rabbit hole and we e
 
 Kafka compression is about (ehm..) compressing data instead of sending data as they are. Some data responds better to compression than other and some algorithm performs better than others.
 
-Possible compression options in the producer are: none, gzip, snappy, lz4, zstd
+Possible compression options in the producer are: none, gzip, snappy, lz4 and zstd.
 
 Compression can be handled by the producer. That is: producer compresses data before sending to Kafka. Consumer reads data and decompresses it. Kafka will store data in a compressed form.
 
