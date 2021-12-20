@@ -12,7 +12,7 @@ In this article we would like to provide you with some tips on how to make your 
 
 #### Tip 1: Make your personal projects private
 
-If you've uploaded projects just to have them be hosted online or to share with a limited amount of people you should consider making them private. This relieves you of the burden of tidying them up. A recruiter will not have to spend their time reviewing code that you didn't intend them to see.
+If you've uploaded projects just to have them be hosted online or to share with a limited number of people you should consider making them private. This relieves you of the burden of tidying them up. A recruiter will not have to spend their time reviewing code that you didn't intend them to see.
 
 #### Tip 2: Treat your repositories like open-source projects
 
